@@ -1,0 +1,29 @@
+.products .item .image {
+  cursor: pointer;
+}
+.products .item .image:hover .quickview {
+  opacity: 1;
+}
+.products .item .quickview {
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.1s ease-in-out;
+  width: 100%;
+}
+.sidenav {
+  background: #ddd;
+  position: fixed;
+  top: 0;
+  right: -999em;
+  width: 30%;
+  height: 100%;
+  transition: all 0.3s ease-out;
+}
+.sidenav .close {
+  cursor: pointer;
+}
+.sidenav.open {
+  right: 0;
+}
