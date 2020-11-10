@@ -21,6 +21,7 @@ goog.scope(function () {
   var FontApiUrlBuilder = webfont.modules.google.FontApiUrlBuilder;
 
   FontApiUrlBuilder.prototype.setFontFamilies = function(fontFamilies) {
+    console.log({fontFamilies});
     this.parseFontFamilies_(fontFamilies);
   };
 

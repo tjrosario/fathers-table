@@ -3529,6 +3529,9 @@ wp.customize.controlConstructor['kirki-typography'] = wp.customize.kirkiDynamicC
 				};
 			} );
 		}
+
+		console.log(googleFonts);
+
 		return {
 			google: googleFonts,
 			standard: standardFonts

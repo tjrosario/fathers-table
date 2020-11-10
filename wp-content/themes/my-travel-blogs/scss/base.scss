@@ -1,0 +1,224 @@
+@import "bootstrap";
+@import "variables";
+@import "products";
+
+p {
+  font-family: $font-montserrat;
+}
+
+// Headlines
+#content,
+.sidenav {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: $gutter;
+  }
+}
+
+// Buttons
+#body .btn {
+  background-color: $color-link;
+  border-radius: 20px;
+  color: $color-white;
+  font-family: $font-heebo;
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 1;
+  padding: 1rem 3rem;
+  text-align: center;
+
+  &:hover {
+    color: $color-rafia;
+  }
+
+  &.btn-white {
+    background-color: $color-white;
+    color: $color-accent;
+  }
+}
+
+// Badges
+#body .badge {
+  font-weight: normal;
+}
+
+// Footer
+#footer.footer-style {
+  font-family: $font-heebo;
+
+  a,
+  .widget-title,
+  .title {
+    color: $white;
+    font-family: $font-heebo;
+  }
+
+  a {
+    i {
+      font-size: 2.4rem;
+      line-height: 50px;
+    }
+  }
+
+  .title {
+    font-size: 3.5rem;
+  }
+
+  .site_logo {
+    max-width: 115px;
+  }
+
+  ul.menu {
+    display: contents;
+    text-align: left;
+
+    > li {
+      display: block;
+      font-size: 1.8rem;
+      margin: 0 0 $gutter / 2;
+
+      a {
+        border-bottom: 0;
+      }
+    }
+
+    li + li:before {
+      display: none;
+    }
+  }
+
+  .widget {
+    font-size: 1.6rem;
+  }
+
+  .wpcf7-not-valid-tip {
+    color: $color-text;
+  }
+}
+
+// Carousels
+.carousel_wrapper {
+  .wave {
+    background-image: url('../img/wave.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    bottom: 0;
+    height: 129px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .sa_hover_container {
+    align-items: center;
+    display: flex;
+  }
+}
+
+#body .detail-content.single_page p img.aligncenter {
+  display: block;
+  margin: auto;
+}
+
+#body .owl-carousel {
+  .owl-item {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
+      color: $color-text;
+    }
+  }
+
+  .sa_hover_container {
+    // align-items: center;
+    // display: flex;
+
+    h1, h2, h3, h4, h5, h6 {
+      @include media-breakpoint-down(lg) {
+        font-size: 3.5rem !important;
+      }
+
+      @include media-breakpoint-down(md) {
+        font-size: 2.8rem !important;
+      }
+    }
+
+    p {
+      @include media-breakpoint-down(lg) {
+        font-size: 2.5rem !important;
+      }
+
+      @include media-breakpoint-down(md) {
+        font-size: 1.5rem !important;
+      }
+    }
+
+    .btn {
+      text-shadow: 0px 0px 0px;
+    }
+  }
+}
+
+// Forms
+button,
+input,
+optgroup,
+select,
+textarea,
+.contact-form .form-control,
+.contact-form label input,
+.wpcf7-form-control-wrap textarea {
+  background-color: $color-white;
+  color: $color-text;
+  font-family: $font-heebo;
+  font-weight: normal;
+}
+
+#body {
+  input,
+  textarea,
+  select {
+    border-radius: $border-radius;
+    color: $color-text;
+    font-family: $font-heebo;
+    font-size: 1.6rem;
+    height: auto;
+    padding: 0.8rem 1.5rem;
+  }
+
+  select {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .wpcf7-form-control {
+    margin: 0 0 1.3rem;
+  }
+
+  .wpcf7-response-output {
+    border-color: $color-accent;
+    border-radius: $border-radius;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Contact forms
+div.wpcf7 .ajax-loader {
+  background-image: url('../img/spinner.svg');
+  background-size: contain;
+  height: 75px;
+  width: 75px;
+}
+
+// Misc helpers
+.cursor-pointer {
+  cursor: pointer;
+}

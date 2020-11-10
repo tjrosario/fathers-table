@@ -1,0 +1,25 @@
+// Layout
+$gutter: 1em;
+
+// Fonts
+$font-montserrat: 'Montserrat', sans-serif;
+$font-heebo: 'Heebo', sans-serif;
+
+// Colors
+$color-asparagus: #7a8f47; // green
+$color-blush: #b74d66; // red
+$color-cocoa-brown: #35231f; // dark brown
+$color-cocoa-brown-opaque: rgba($color-cocoa-brown, .35);
+$color-mineshaft-alpha: #212121; // black
+$color-mineshaft-beta: #3d3d3d;
+$color-rafia: #e9d6b3; // beige
+$color-rafia-opaque: rgba($color-rafia, .35);
+$color-white: #fff;
+
+$color-accent: $color-blush;
+$color-link: $color-accent;
+$color-text: $color-mineshaft-beta;
+$title-color: $color-mineshaft-alpha;
+
+// Borders
+$border-radius: 3px;

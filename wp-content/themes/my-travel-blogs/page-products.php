@@ -4,13 +4,21 @@
 */
   get_header(); 
 
-  $args = array(  
+  $productArgs = array(  
     'post_type' => 'product',
     'posts_per_page'=> -1,
     'post_status' => 'publish',
+    'order' => 'ASC',
   );
 
-  $loop = new WP_Query( $args ); 
+  $products = new WP_Query( $productArgs ); 
+
+  $taxonomy = 'product_categories';
+
+  $terms = get_terms( array(
+    'taxonomy' => $taxonomy,
+    'hide_empty' => false,
+  ));
 ?>
 
 	<section id="blog" class="blog-section bizberg_default_page">
@@ -21,47 +29,79 @@
 
 				<div class="two-tone-layout"><!-- two tone layout start -->
 
-					<div class="col-xs-12" id="content"><!-- primary start -->
+          <div class="col-xs-12" id="content"><!-- primary start -->
+            <h1 class="mb-5"><?php the_title(); ?></h1>
 
 						<?php
-						while ( have_posts() ) : the_post();
+/* 						while ( have_posts() ) : the_post();
 
 						  get_template_part( 'template-parts/content', 'page' );
 
-						endwhile; // End of the loop.
+						endwhile; // End of the loop. */
             ?>
+<!--             
+            <div class="filters btn-group mb-5">
+            <?php
+              // foreach ($terms as $term) :
+            ?>
+              <a class="btn btn-secondary mr-5" href="#"><?php //echo $term->name ?></a>
+              
+            <?php // endforeach; ?>
+            </div> -->
             
 
             <div class="products row">
             <?php
-              while ( $loop->have_posts() ) : 
-                $loop->the_post(); 
-                $gallery = get_field('gallery');
+              while ( $products->have_posts() ) : 
+                $products->the_post(); 
+                // $gallery = get_field('gallery');
+                $permalink = get_permalink($products->post->ID)
               ?>
-<!-- 
-              <pre>
-                <?php  
-                  // print_r(get_fields()) 
-                 // print_r (get_field('gallery'));
-                ?>
-              </pre> -->
 
                 <div class="item col-md-3" data-id="<?php echo the_ID() ?>">
-                  <div class="image position-relative mb-4">
+                  <div class="product-image position-relative mb-4">
 
                     <img src="<?php echo get_field('image')['sizes']['medium'] ?>" class="" />
 
-                    <div class="quickview btn btn-primary">Quick View</div>
+                    <div class="product-quickview btn btn-primary">Quick View</div>
                   </div>
-                  <h2 class="mb-3"><?php the_title() ?></h2>
-                  <p><?php the_field('short_description') ?></p>
 
-                  <div class="gallery hidden" data-id="<?php echo the_ID() ?>">
-                    <?php the_field('gallery') ?>
+                  <h2 class="mb-3">
+                    <a href="<?php echo $permalink; ?>">
+                      <?php the_field('title') ?>
+                    </a>
+                  </h2>
+                  
+                  <p><?php the_field('short_description') ?></p>
+<!-- 
+                  <div class="product-gallery hidden" data-id="<?php // echo the_ID() ?>">
+                    <?php // the_field('gallery') ?>
+                  </div> -->
+
+                  <div class="product-meta hidden">
+                    <img src="<?php echo get_field('image')['sizes']['medium'] ?>" class="" />
+
+                    <div class="product-description">
+                      <?php the_field('short_description'); ?>
+                    </div>
+
+                    <?php if( have_rows('variety') ): ?>
+                      <div class="product-varieties">
+                        <h3>Available Flavors</h3>
+
+                        <?php while( have_rows('variety') ) : the_row(); ?>
+                          <div class="badge"><?php echo get_sub_field('name') ?></div>
+                        <?php endwhile; ?>
+
+                      </div>
+                    <?php 
+                      endif; 
+                    ?>
+
                   </div>
                 </div>
               
-              <?php  endwhile;?>
+              <?php endwhile;?>
             </div>
 
           </div>
@@ -77,57 +117,8 @@
 		</div><!-- #main -->
 	
   </section><!-- #primary -->
-
-  <div class="sidenav" id="sidenav">
-    <div class="wrapper p-4">
-      <div class="actions text-right row p-4 mt-4">
-        <i class="fas fa-times close"></i>
-      </div>
-      <div id="quickViewProduct" class="mt-3"></div>
-    </div>
-  </div>
   
-  <script>
-    (function ($) {
-      $(document).ready(function() {
-        var $sidenav = $('#sidenav');
-        var $quickViewProduct = $('#quickViewProduct');
-        var $products = $('.products');
-
-        $products.find('.item .image').on('click', function(e) {
-          e.preventDefault();
-          var $item = $(this).parents('.item');
-          var $gallery = $item.find('.gallery').removeClass('hidden');
-
-          var $quickViewGallery = $quickViewProduct.find('.gallery');
-
-          if ($quickViewGallery.length) {
-            var id = $quickViewGallery.data('id');
-            var $item = $products.find('.item[data-id="' + id + '"]');
-            $item.find('');
-
-            $item.append($quickViewGallery.addClass('hidden'));
-          }
-
-          $quickViewProduct.html($gallery);
-          toggleNav($sidenav, true);
-        });
-
-        $sidenav.find('.close').on('click', function() {
-          toggleNav($sidenav, false, 1000);
-        });
-      });
-
-      function toggleNav($ele, isOpen) {
-        if (isOpen) {
-          $ele.addClass('open');
-        } else {
-          $ele.removeClass('open');
-        }
-      }
-
-    }(jQuery));
-  </script>
+  <?php include('quickview.php') ?>
 
 <?php
 get_footer();

@@ -16,6 +16,9 @@ function my_travel_blogs_chld_thm_parent_css() {
     	) 
     );
 
+    wp_enqueue_script( 'boot3','https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js', array( 'jquery' ), '', true );
+    wp_enqueue_script('custom', get_stylesheet_directory_uri().'/scripts/custom.js');
+
 }
 
 add_filter( 'bizberg_slider_btn_padding', function(){
@@ -3082,3 +3085,103 @@ add_filter( 'bizberg_inline_style', function( $inline_css ){
     return $inline_css;
 
 });
+
+function bizberg_child_widgets_init() {
+    register_sidebar(array(
+        'name' => 'Footer Column 1',
+        'id' => 'bizberg_child_footer_col1',
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget' => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer Column 2',
+        'id' => 'bizberg_child_footer_col2',
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget' => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer Column 3',
+        'id' => 'bizberg_child_footer_col3',
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget' => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+    ));
+}   
+add_action( 'widgets_init', 'bizberg_child_widgets_init' );
+
+function bizberg_child_get_footer(){
+    $social_icons = bizberg_get_footer_social_links(); ?>
+
+    <footer 
+	id="footer" 
+	class="footer-style"
+	style="<?php echo ( empty( $social_icons ) ? 'padding-top: 20px;' : '' ); ?>">
+        <div class="container">
+            <div class="row  text-left">
+                <div class="col-md-4">
+                    <?php if ( has_custom_logo() ) { ?>
+                        <img 
+                            src="<?php echo esc_url(bizberg_get_custom_logo_link()); ?>" 
+                            alt="<?php esc_attr_e('Logo', 'bizberg') ?>" 
+                            class="site_logo"
+                        />
+                    <?php } ?>
+
+                    <?php if ( is_active_sidebar( 'bizberg_child_footer_col1' ) ) : ?>
+                        <div class="my-3">
+                            <?php if(dynamic_sidebar('bizberg_child_footer_col1')) : else : endif ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php 
+                    if( !empty( $social_icons ) ){ ?>
+                        <div class="footer_social_links">
+                            <?php 
+                            echo wp_kses_post( $social_icons );
+                            ?>
+                        </div>
+                        <?php 
+                    } ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h3 class="title mb-3">Quick links</h3>
+
+                    <?php
+                    wp_nav_menu( array(
+                        'theme_location' => 'footer',
+                        'menu_class'=>'menu',
+                        'container' => 'ul',
+                        'depth' => 1
+                    ) );
+                    ?>
+
+                    <?php if ( is_active_sidebar( 'bizberg_child_footer_col2' ) ) : ?>
+                        <div class="my-3">
+                            <?php if(dynamic_sidebar('bizberg_child_footer_col2')) : else : endif ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <div class="col-md-4">
+                    <h3 class="title mb-3">Contact us</h3>
+
+                    <?php if ( is_active_sidebar( 'bizberg_child_footer_col3' ) ) : ?>
+                        <div class="my-3">
+                            <?php if(dynamic_sidebar('bizberg_child_footer_col3')) : else : endif ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <?php
+}

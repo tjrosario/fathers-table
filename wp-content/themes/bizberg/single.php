@@ -14,15 +14,10 @@ get_header(); ?>
 		<div class="container">
 
 			<div class="row">
-			<?php the_field('gallery') ?>
 
 				<div class="two-tone-layout"><!-- two tone layout start -->
 
 					<div class="<?php echo bizberg_check_sidebar_active_inactive_class_page(); ?>" id="content"><!-- primary start -->
-
-					<pre>
-						<?php print_r(the_post()) ?>
-					</pre>
 
 						<?php
 						while ( have_posts() ) : the_post();
