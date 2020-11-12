@@ -16,7 +16,14 @@ function my_travel_blogs_chld_thm_parent_css() {
     	) 
     );
 
-    wp_enqueue_script( 'boot3','https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js', array( 'jquery' ), '', true );
+    // boostrap
+    wp_enqueue_script( 'bootstrap_js','https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js', array( 'jquery' ), '', true );
+
+    // slick carousel
+    wp_enqueue_style( 'slick_css', esc_url_raw( 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' ), array(), null );
+    wp_enqueue_script( 'slick_js','http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array( 'jquery' ), '', true );
+
+    // custom scripts
     wp_enqueue_script('custom', get_stylesheet_directory_uri().'/scripts/custom.js');
 
 }

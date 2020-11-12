@@ -2,8 +2,19 @@
 @import "variables";
 @import "products";
 
+// Header
+#masthead {
+  .navbar {
+    z-index: 99;
+  }
+}
+
 p {
   font-family: $font-montserrat;
+}
+
+a {
+  outline: none;
 }
 
 // Headlines

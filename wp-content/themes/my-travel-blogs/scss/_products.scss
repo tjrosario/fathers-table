@@ -37,7 +37,7 @@
   width: 30%;
   height: 100vh;
   transition: all 0.3s ease-out;
-  z-index: 10;
+  z-index: 100;
 
   > .wrapper {
     height: calc(100vh - 32px - 45px);
@@ -76,15 +76,32 @@
   }
 }
 
-.product-detail-page {
+#body .product-detail-page {
+  color: $color-text;
+  
+  h1 {
+    color: $color-text;
+    font-size: 3.6rem;
+    font-weight: 500;
+  }
 
+  .product-image {
+    border: 1px solid transparent;
+    border-radius: 20px;
+    outline: none;
+
+    &.active {
+      border-color: $color-accent;
+    }
+  }
 }
 
 #body .product-meta {
   .title {
     color: $color-text;
     font-family: $font-heebo;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: 500;
   }
 
   .product-toggle {
@@ -92,6 +109,67 @@
   }
 
   .product-toggle-title {
+    font-size: 1.8rem;
 
+    i {
+      color: $color-accent;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+
+    .fa-minus {
+      display: inline-block;
+    }
+
+    .fa-plus {
+      display: none;
+    }
+
+    &.collapsed {
+      .fa-minus {
+        display: none;
+      }
+
+      .fa-plus {
+        display: inline-block;
+      }
+    }
+  }
+
+  .badge {
+    background: $color-white;
+    border: 1px solid rgba($color-text, .7);
+    border-radius: 20px;
+    color: rgba($color-text, .7);
+    font-size: 1.4rem;
+    transition: all .1s ease-out;
+
+    a {
+      color: rgba($color-text, .7);
+    }
+
+    &:hover,
+    &.active {
+      border-color: $color-accent;
+      color: $color-accent;
+
+      a {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+#productMainImage {
+  min-height: 400px;
+
+  .loader {
+    font-size: 2rem;
+    height: 50px;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    position: absolute;
+    top: 50%;
+    width: 50px;
   }
 }

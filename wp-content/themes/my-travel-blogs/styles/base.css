@@ -2108,7 +2108,7 @@ a.text-dark:hover, a.text-dark:focus {
   width: 30%;
   height: 100vh;
   transition: all 0.3s ease-out;
-  z-index: 10;
+  z-index: 100;
 }
 .sidenav > .wrapper {
   height: calc(100vh - 32px - 45px);
@@ -2139,13 +2139,82 @@ a.text-dark:hover, a.text-dark:focus {
     top: 48px;
   }
 }
+#body .product-detail-page {
+  color: #3d3d3d;
+}
+#body .product-detail-page h1 {
+  color: #3d3d3d;
+  font-size: 3.6rem;
+  font-weight: 500;
+}
+#body .product-detail-page .product-image {
+  border: 1px solid transparent;
+  border-radius: 20px;
+}
+#body .product-detail-page .product-image.active {
+  border-color: #b74d66;
+}
 #body .product-meta .title {
   color: #3d3d3d;
   font-family: 'Heebo', sans-serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 500;
 }
 #body .product-meta .product-toggle {
   border-top: 1px solid #b74d66;
+}
+#body .product-meta .product-toggle-title {
+  font-size: 1.8rem;
+}
+#body .product-meta .product-toggle-title i {
+  color: #b74d66;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+#body .product-meta .product-toggle-title .fa-minus {
+  display: inline-block;
+}
+#body .product-meta .product-toggle-title .fa-plus {
+  display: none;
+}
+#body .product-meta .product-toggle-title.collapsed .fa-minus {
+  display: none;
+}
+#body .product-meta .product-toggle-title.collapsed .fa-plus {
+  display: inline-block;
+}
+#body .product-meta .badge {
+  background: #fff;
+  border: 1px solid rgba(61, 61, 61, .7);
+  border-radius: 20px;
+  color: rgba(61, 61, 61, .7);
+  font-size: 1.4rem;
+  transition: all 0.1s ease-out;
+}
+#body .product-meta .badge a {
+  color: rgba(61, 61, 61, .7);
+}
+#body .product-meta .badge:hover, #body .product-meta .badge.active {
+  border-color: #b74d66;
+  color: #b74d66;
+}
+#body .product-meta .badge:hover a, #body .product-meta .badge.active a {
+  color: #b74d66;
+}
+#productMainImage {
+  min-height: 400px;
+}
+#productMainImage .loader {
+  font-size: 2rem;
+  height: 50px;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  position: absolute;
+  top: 50%;
+  width: 50px;
+}
+#masthead .navbar {
+  z-index: 99;
 }
 p {
   font-family: 'Montserrat', sans-serif;
