@@ -3,11 +3,26 @@
 
   .item {
     @include media-breakpoint-up(lg) {
-      min-height: 250px;
+      min-height: 425px;
+    }
+    
+    a {
+      color: $color-text;
+
+      &:hover {
+        color: $color-accent;
+      }
     }
 
     .product-image {
       cursor: pointer;
+      display: inline-block;
+      min-height: 180px;
+      overflow: hidden;
+
+      @include media-breakpoint-up(lg) {
+        display: block;
+      }
 
       &:hover {
         .product-quickview {
@@ -29,15 +44,56 @@
   }
 }
 
+#body .product-quickview-info {
+  .slick-slide {
+    img {
+      margin: auto;
+      max-height: 365px;
+    }
+  }
+
+  .slick-dots {
+    bottom: 15px;
+
+    li {
+      button:before {
+        opacity: 0.75;
+        color: #ddd;
+      }
+
+      &.slick-active {
+        button:before {
+          color: $color-text;
+        }
+      }
+    }
+  }
+
+  .product-meta {
+    > div {
+      padding: 0 $gutter;
+    }
+  }
+
+  .product-carousel {
+    margin-bottom: $gutter;
+  }
+}
+
 .sidenav {
-  background: #ddd;
+  background: $color-white;
+  box-shadow: -10px 0 10px -8px rgba($color-mineshaft-alpha, 0.2);
   position: fixed;
   top: 0;
   right: -999em;
-  width: 30%;
+  width: 90%;
   height: 100vh;
   transition: all 0.3s ease-out;
   z-index: 100;
+
+  @include media-breakpoint-up(lg) {
+    width: 545px;
+  }
 
   > .wrapper {
     height: calc(100vh - 32px - 45px);
@@ -61,10 +117,6 @@
     right: 0;
   }
 
-  .product-description {
-    // display: none;
-  }
-
   .logged-in & {
     height: calc(100vh - 32px);
     top: 32px;
@@ -78,21 +130,32 @@
 
 #body .product-detail-page {
   color: $color-text;
-  
-  h1 {
+
+  h1.title {
     color: $color-text;
     font-size: 3.6rem;
     font-weight: 500;
   }
 
-  .product-image {
-    border: 1px solid transparent;
-    border-radius: 20px;
-    outline: none;
+  .product-carousel {
+    .product-image {
+      border: 1px solid transparent;
+      border-radius: 20px;
 
-    &.active {
-      border-color: $color-accent;
+      &.active {
+        border-color: $color-accent;
+      }
     }
+  }
+
+  .col-c {
+    @include media-breakpoint-down(md) {
+      margin-top: $gutter * 3;
+    }
+  }
+
+  .product-upsell {
+    margin-top: 6rem;
   }
 }
 
@@ -108,7 +171,7 @@
     border-top: 1px solid $color-accent;
   }
 
-  .product-toggle-title {
+  .title-beta {
     font-size: 1.8rem;
 
     i {
@@ -138,14 +201,12 @@
 
   .badge {
     background: $color-white;
-    border: 1px solid rgba($color-text, .7);
-    border-radius: 20px;
-    color: rgba($color-text, .7);
-    font-size: 1.4rem;
-    transition: all .1s ease-out;
+    border: 1px solid rgba($color-text, 0.7);
+    color: rgba($color-text, 0.7);
+    transition: all 0.1s ease-out;
 
     a {
-      color: rgba($color-text, .7);
+      color: rgba($color-text, 0.7);
     }
 
     &:hover,
@@ -158,10 +219,29 @@
       }
     }
   }
+
+  .product-description {
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+#body .product-upsell {
+  .title {
+    color: $color-title;
+    font-size: 2.4rem;
+  }
+
+  .product-short-description {
+    display: none;
+  }
 }
 
 #productMainImage {
-  min-height: 400px;
+  @include media-breakpoint-up(lg) {
+    min-height: 400px;
+  }
 
   .loader {
     font-size: 2rem;

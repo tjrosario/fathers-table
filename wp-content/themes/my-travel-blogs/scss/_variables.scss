@@ -4,6 +4,7 @@ $gutter: 1em;
 // Fonts
 $font-montserrat: 'Montserrat', sans-serif;
 $font-heebo: 'Heebo', sans-serif;
+$font-fontawesome: 'Font Awesome 5 Free';
 
 // Colors
 $color-asparagus: #7a8f47; // green
@@ -14,12 +15,13 @@ $color-mineshaft-alpha: #212121; // black
 $color-mineshaft-beta: #3d3d3d;
 $color-rafia: #e9d6b3; // beige
 $color-rafia-opaque: rgba($color-rafia, .35);
+$color-santas-gray: #9ea1a8;
 $color-white: #fff;
 
 $color-accent: $color-blush;
 $color-link: $color-accent;
 $color-text: $color-mineshaft-beta;
-$title-color: $color-mineshaft-alpha;
+$color-title: $color-mineshaft-alpha;
 
 // Borders
 $border-radius: 3px;

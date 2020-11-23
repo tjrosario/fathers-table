@@ -32,6 +32,8 @@ bizberg_child_get_footer(); ?>
 
 <?php wp_footer(); ?>
 
+<?php include('shared/quickview.php') ?>
+
 </body>
 </html>
 

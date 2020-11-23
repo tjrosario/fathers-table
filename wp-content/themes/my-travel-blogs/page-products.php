@@ -21,7 +21,7 @@
   ));
 ?>
 
-	<section id="blog" class="blog-section bizberg_default_page">
+	<section class="products-page" id="productListing">
 
 		<div class="container">
 
@@ -54,52 +54,10 @@
             <?php
               while ( $products->have_posts() ) : 
                 $products->the_post(); 
-                // $gallery = get_field('gallery');
                 $permalink = get_permalink($products->post->ID)
               ?>
-
-                <div class="item col-md-3" data-id="<?php echo the_ID() ?>">
-                  <div class="product-image position-relative mb-4">
-
-                    <img src="<?php echo get_field('image')['sizes']['medium'] ?>" class="" />
-
-                    <div class="product-quickview btn btn-primary">Quick View</div>
-                  </div>
-
-                  <h2 class="mb-3">
-                    <a href="<?php echo $permalink; ?>">
-                      <?php the_field('title') ?>
-                    </a>
-                  </h2>
-                  
-                  <p><?php the_field('short_description') ?></p>
-<!-- 
-                  <div class="product-gallery hidden" data-id="<?php // echo the_ID() ?>">
-                    <?php // the_field('gallery') ?>
-                  </div> -->
-
-                  <div class="product-meta hidden">
-                    <img src="<?php echo get_field('image')['sizes']['medium'] ?>" class="" />
-
-                    <div class="product-description">
-                      <?php the_field('short_description'); ?>
-                    </div>
-
-                    <?php if( have_rows('variety') ): ?>
-                      <div class="product-varieties">
-                        <h3>Available Flavors</h3>
-
-                        <?php while( have_rows('variety') ) : the_row(); ?>
-                          <div class="badge"><?php echo get_sub_field('name') ?></div>
-                        <?php endwhile; ?>
-
-                      </div>
-                    <?php 
-                      endif; 
-                    ?>
-
-                  </div>
-                </div>
+                <?php include('shared/product-varieties.php'); ?>
+                <?php include('shared/product-grid.php'); ?>
               
               <?php endwhile;?>
             </div>
@@ -118,7 +76,8 @@
 	
   </section><!-- #primary -->
   
-  <?php include('quickview.php') ?>
+  
 
 <?php
 get_footer();
+
