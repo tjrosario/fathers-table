@@ -2301,11 +2301,18 @@ small {
   border-radius: 20px;
   color: #fff;
   font-family: 'Heebo', sans-serif;
-  font-size: 2.4rem;
+  font-size: 1.4rem;
   font-weight: 400;
   line-height: 1;
-  padding: 1rem 3rem;
+  outline: none;
+  padding: 1rem 2rem;
   text-align: center;
+}
+@media (min-width: 768px) {
+  #body .btn {
+    font-size: 2.4rem;
+    padding: 1rem 3rem;
+  }
 }
 #body .btn:hover {
   color: #e9d6b3;
@@ -2553,10 +2560,13 @@ div.wpcf7 .ajax-loader {
 .cursor-pointer {
   cursor: pointer;
 }
+.cursor-default {
+  cursor: default;
+}
 #body .hero {
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vw;
+  height: auto;
 }
 @media (min-width: 768px) {
   #body .hero {
@@ -2581,6 +2591,29 @@ div.wpcf7 .ajax-loader {
 #body .filters .collapse.in {
   border-color: #b74d66;
 }
+#body .filters .search .form-control {
+  border-color: #b74d66;
+  padding-right: 40px;
+}
+@media (min-width: 768px) {
+  #body .filters .search .form-control {
+    width: 300px;
+  }
+}
+#body .filters .search button {
+  background: none;
+  border: 0;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#body .filters .search i {
+  color: #b74d66;
+  font-size: 2.2rem;
+  padding: 1rem;
+}
 #body .filters .title {
   font-size: 1.6rem;
 }
@@ -2604,20 +2637,22 @@ div.wpcf7 .ajax-loader {
   font-size: 1.4rem;
   font-weight: 500;
 }
-#body .filters a {
+#body .filters .badge {
   background: #fff;
   border: 1px solid #9ea1a8;
   color: #9ea1a8;
   padding: 0.5em 1em;
 }
-#body .filters a:hover {
+#body .filters .badge:hover {
   border-color: #b74d66;
   color: #b74d66;
 }
-#body .filters a.active {
+#body .filters .badge.active {
   border-color: #b74d66;
   color: #b74d66;
 }
-#body .filters .btn {
-  font-size: 1.6rem;
+@media (min-width: 768px) {
+  #body .filters .btn {
+    font-size: 1.6rem;
+  }
 }

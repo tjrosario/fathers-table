@@ -233,32 +233,64 @@
     this.$container = $($container);
     this.$submit = this.$container.find('.submit');
     this.$cancel = this.$container.find('.cancel');
+    this.$search = this.$container.find('.search');
     this.filters = {};
+    this.baseUrl = location.origin + location.pathname;
     this.init();
   };
   ProductFilters.prototype = {
     init: function () {
       var self = this;
-      this.$container.find('.badge').on('click', function(e) {
+
+      this.$container.find('.active-filters .badge.active').each(function() {
+        var filterVals = self.getVals($(this));
+        self.add(filterVals.filter, filterVals.value);
+      });
+
+      this.$container.find('.badge.apply').on('click', function(e) {
         e.preventDefault();
         self.toggle($(this));
       });
 
-      this.$submit.on('click', function(e) {
+      this.$container.find('.active-filters .remove').on('click', function(e) {
         e.preventDefault();
-        var queryParams = self.getQueryParams();
-
-        if (queryParams) {
-          var baseUrl = location.origin + location.pathname;
-          self.goTo(baseUrl + queryParams);
-        }
+        var $filter = $(this).parent();
+        var filterVals = self.getVals($filter);
+        self.remove(filterVals.filter, filterVals.value);
+        self.submit();
       });
 
-      this.$cancel.on('click', function(e) {
-        e.preventDefault();
-        var baseUrl = location.origin + location.pathname;
-        self.goTo(baseUrl);
-      });
+      this.$submit.on('click', this.submit.bind(this));
+      this.$cancel.on('click', this.cancel.bind(this));
+      this.$search.on('submit', this.search.bind(this));
+    },
+    search: function(e) {
+      if (e) { e.preventDefault(); }
+      var val = this.$search.find('input').val();
+
+      // only allow one search term
+      this.filters['search'] = [];
+
+      if (val) {
+        this.add('search', val);
+      } else {
+        this.remove('search', val);
+      }
+      this.submit();
+    },
+    submit: function(e) {
+      if (e) { e.preventDefault(); }
+      var queryParams = this.getQueryParams();
+
+      if (queryParams) {
+        this.goTo(this.baseUrl + queryParams);
+      } else if (window.location.search) {
+        this.cancel();
+      }
+    },
+    cancel: function(e) {
+      if (e) { e.preventDefault(); }
+      this.goTo(this.baseUrl);
     },
     goTo: function(url) {
       window.location.href = url;
@@ -266,22 +298,29 @@
     getQueryParams: function() {
       var params = '';
       for (var filter in this.filters) {
+        var isArray = filter !== 'search';
         for (var i = 0; i < this.filters[filter].length; i++) {
           var prepend = params.indexOf('?') > -1 ? '&' : '?';
-          params += prepend + filter + '[]=' + this.filters[filter][i];
+          params += prepend + filter;
+          // if (isArray) {
+            params += '[]';
+          // }
+          params += '=' + this.filters[filter][i];
         }
       }
       return params;
     },
     toggle: function($filter) {
-      $filter.toggleClass('active');
-      var filter = $filter.data('filter');
-      var value = $filter.data('value');
+      var filterVals = this.getVals($filter);
+      var filter = filterVals.filter;
+      var value = filterVals.value;
 
       if ($filter.hasClass('active')) {
-        this.add(filter, value);
-      } else {
+        $filter.removeClass('active');
         this.remove(filter, value);
+      } else {
+        $filter.addClass('active');
+        this.add(filter, value);
       }
     },
     add: function(filter, value) {
@@ -293,6 +332,15 @@
     remove: function(filter, value) {
       const index = this.filters[filter].indexOf(value);
       this.filters[filter].splice(index, 1);
+    },
+    getVals: function ($filter) {
+      var filter = $filter.data('filter');
+      var value = $filter.data('value');
+
+      return {
+        filter: filter,
+        value: value
+      };
     }
   };
 

@@ -52,11 +52,17 @@ small {
   border-radius: 20px;
   color: $color-white;
   font-family: $font-heebo;
-  font-size: 2.4rem;
+  font-size: 1.4rem;
   font-weight: 400;
   line-height: 1;
-  padding: 1rem 3rem;
+  outline: none;
+  padding: 1rem 2rem;
   text-align: center;
+
+  @include media-breakpoint-up(md) {
+    font-size: 2.4rem;
+    padding: 1rem 3rem;
+  }
 
   &:hover {
     color: $color-rafia;
@@ -401,11 +407,15 @@ div.wpcf7 .ajax-loader {
   cursor: pointer;
 }
 
+.cursor-default {
+  cursor: default;
+}
+
 // Heros
 #body .hero {
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vw;
+  height: auto;
 
   @include media-breakpoint-up(md) {
     height: 600px;
@@ -435,6 +445,33 @@ div.wpcf7 .ajax-loader {
 
     &.in {
       border-color: $color-accent;
+    }
+  }
+
+  .search {
+    .form-control {
+      border-color: $color-accent;
+      padding-right: 40px;
+
+      @include media-breakpoint-up(md) {
+        width: 300px;
+      }
+    }
+
+    button {
+      background: none;
+      border: 0;
+      outline: none;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    i {
+      color: $color-accent;
+      font-size: 2.2rem;
+      padding: 1rem;
     }
   }
 
@@ -470,7 +507,7 @@ div.wpcf7 .ajax-loader {
     font-weight: 500;
   }
 
-  a {
+  .badge {
     background: $color-white;
     border: 1px solid $color-santas-gray;
     color: $color-santas-gray;
@@ -488,7 +525,8 @@ div.wpcf7 .ajax-loader {
   }
 
   .btn {
-    font-size: 1.6rem;
-    //padding: $gutter / 2 $gutter;
+    @include media-breakpoint-up(md) {
+      font-size: 1.6rem;
+    }
   }
 }
